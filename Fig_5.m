@@ -41,6 +41,11 @@ HX = sum(-PX.*log2(PX),2); % set of corresponding constellation entropies
 Rbmd = zeros(length(lambda_set),length(snr_lin));
 Best_MB_snr = zeros(length(lambda_set),1);
 for iMB = 1:length(lambda_set)
+    if mod(iMB-1,round(length(lambda_set)/20))==0
+    fprintf('%.0f%% of the distributions have been evaluated. \n',iMB/length(lambda_set)*100);
+    else
+    end
+    
     Rbmd = BMDrate_MASK_AWGN (M,PX(iMB,:),labeling,snr_lin);
     [AIR, indices] = unique(Rbmd);
     Best_MB_snr(iMB) = interp1(AIR, snr_lin(indices), R);

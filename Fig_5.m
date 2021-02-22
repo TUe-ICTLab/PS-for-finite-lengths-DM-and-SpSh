@@ -28,7 +28,7 @@ snr_lin = 10.^(snr_dB/10);
 labeling = [0 0 0; 0 0 1; 0 1 1; 0 1 0; 1 1 0; 1 1 1; 1 0 1; 1 0 0]; 
         
 % Family of Maxwell-Boltzmann distributions
-load('lambda_set.mat')
+lambda_set = 0:1e-4:0.0938;
 PA = zeros(length(lambda_set),M/2); % set of MB-distributed P(A)'s
 for il = 1:length(lambda_set)
     K = (sum(exp(-lambda_set(il)*Aset.^2)))^-1;
